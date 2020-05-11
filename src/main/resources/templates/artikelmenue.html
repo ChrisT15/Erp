@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artikel-Menü</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+
+</head>
+<body>
+
+
+<!-- Formular fuer die Suche von Artikeln. Die Daten werden an artikel_suchen.php weitergegeben -->
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${artikelEntities}" class="container my-5">
+                <p class="my-5">
+                    <a th:href="@{artikelmenue/artikel}" class="btn btn-primary"><i
+                            class="fas fa-user-plus ml-2"> Neuer Artikel</i></a>
+                </p>
+
+                <h2>Artikel-Suche:</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-8">
+                            <form action="#" th:action="@{artikelmenue/suchen}" th:object="${artikel}" method="post">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nummer" class="col-form-label">Nummer</label> <input type="text" th:field="*{nummer}" class="form-control" id="nummer" placeholder="Nummer"> <span th:if="${#fields.hasErrors('nummer')}" th:errors="*{nummer}" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="bezeichnung" class="col-form-label">Bezeichnung</label> <input type="text" th:field="*{bezeichnung}" class="form-control" id="bezeichnung" placeholder="Bezeichnung"> <span th:if="${#fields.hasErrors('bezeichnung')}" th:errors="*{bezeichnung}" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="verkaufsPreis" class="col-form-label">Verkaufspreis</label> <input type="text" th:field="*{verkaufsPreis}" class="form-control" id="verkaufsPreis" placeholder="verkaufsPreis"> <span th:if="${#fields.hasErrors('verkaufsPreis')}" th:errors="verkaufsPreis" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-8">
+                                        <input type="submit" class="btn btn-primary" value="Artikel suchen">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <h2 th:case="null">Keine Artikel!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Nummer</th>
+                                <th>Bezeichnung</th>
+                                <th>Verkaufspreis</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="artikelEntity : ${artikelEntities}">
+                                <td th:text="${artikelEntity.nummer}"></td>
+                                <td th:text="${artikelEntity.bezeichnung}"></td>
+                                <td th:text="${artikelEntity.verkaufsPreis}"></td>
+                                <td><a th:href="@{/artikel/bearbeiten/{id}(id=${artikelEntity.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                <td><a th:href="@{/artikel/loeschen/{id}(id=${artikelEntity.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
