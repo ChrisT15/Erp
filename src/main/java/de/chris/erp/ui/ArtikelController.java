@@ -29,7 +29,7 @@ public class ArtikelController
             return "artikel";
         }
         artikelService.speicherArtikel(artikel);
-        return "artikelmenue";
+        return "redirect:/artikelmenue/leeren";
     }
 
     @GetMapping("bearbeiten/{id}")
@@ -44,8 +44,7 @@ public class ArtikelController
     public String loeschen(@PathVariable("id") long id, Model model) {
         Artikel artikel = artikelService.findById(id);
         artikelService.loescheArtikel(artikel);
-        model.addAttribute("artikel",new Artikel());
-        model.addAttribute("artikelEntities",new ArrayList<>());
-        return "artikelmenue";
+        model.addAttribute("id",id);
+        return "redirect:/artikelmenue/ohneGeloeschtenArtikel/{id}";
     }
 }

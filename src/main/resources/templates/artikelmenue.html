@@ -19,7 +19,7 @@
         <div class="card-body">
             <div th:switch="${artikelEntities}" class="container my-5">
                 <p class="my-5">
-                    <a th:href="@{artikelmenue/artikel}" class="btn btn-primary"><i
+                    <a th:href="@{/artikelmenue/artikel}" class="btn btn-primary"><i
                             class="fas fa-user-plus ml-2"> Neuer Artikel</i></a>
                 </p>
 
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-8">
-                            <form action="#" th:action="@{artikelmenue/suchen}" th:object="${artikel}" method="post">
+                            <form action="#" th:action="@{/artikelmenue/suchen}" th:object="${artikel}" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="nummer" class="col-form-label">Nummer</label> <input type="text" th:field="*{nummer}" class="form-control" id="nummer" placeholder="Nummer"> <span th:if="${#fields.hasErrors('nummer')}" th:errors="*{nummer}" class="text-danger"></span>

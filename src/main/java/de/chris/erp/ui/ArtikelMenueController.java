@@ -33,13 +33,25 @@ public class ArtikelMenueController
     {
         this.artikel = artikel;
         artikelEntities = artikelService.sucheArtikelNachEigenschaften(artikel);
-        return "redirect:/artikelmenue";
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String sendeArtikel(Model model) {
         model.addAttribute("artikelEntities", artikelEntities);
         model.addAttribute("artikel",artikel);
+        return "artikelmenue";
+    }
+
+    @GetMapping("/leeren")
+    public String zeigeLeereFelder(Model model)
+    {
+        model.addAttribute("artikelEntities",new ArrayList<>());
+        model.addAttribute("artikel",new Artikel());
+        return "artikelmenue";
+    }
+
+    @GetMapping("/ohneGeloeschtenArtikel/{id}")
+    public String zeigeArtikelTabelleOhneGeloeschtenArtikel(Model model,@PathVariable("id") Long id)
+    {
+        model.addAttribute("artikel",new Artikel());
+        artikelEntities.removeIf(artikel -> artikel.getId() == id);
+        model.addAttribute("artikelEntities",artikelEntities);
         return "artikelmenue";
     }
 }
