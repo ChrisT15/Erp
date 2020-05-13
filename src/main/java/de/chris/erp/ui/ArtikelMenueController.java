@@ -23,6 +23,8 @@ public class ArtikelMenueController
 
     List<Artikel> artikelEntities = new ArrayList<>();
 
+    Artikel artikel;
+
     @RequestMapping("/artikel")
     public String oeffneArtikelFenster(@ModelAttribute Artikel artikel)
     {
@@ -32,13 +34,15 @@ public class ArtikelMenueController
     @PostMapping("/suchen")
     public String sucheArtikel(Artikel artikel, BindingResult bindingResult, Model model)
     {
+        this.artikel = artikel;
         artikelEntities = artikelService.sucheArtikelNachEigenschaften(artikel);
-        return "redirect:/suchen";
+        return "redirect:/artikelmenue/ergebnisse";
     }
 
-    @GetMapping("/suchen")
+    @GetMapping("/ergebnisse")
     public String sendeArtikel(Model model) {
         model.addAttribute("artikelEntities", artikelEntities);
+        model.addAttribute("artikel",artikel);
         return "artikelmenue";
     }
 }

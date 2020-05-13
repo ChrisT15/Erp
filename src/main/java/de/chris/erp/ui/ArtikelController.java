@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/artikel")
@@ -20,8 +21,8 @@ public class ArtikelController
     @Autowired
     ArtikelService artikelService;
 
-    @PostMapping("/speichern")
-    public String speichern(@Valid Artikel artikel, BindingResult result, Model model)
+    @PostMapping("/speichern/{id}")
+    public String speichern(@PathVariable("id") long id, @Valid Artikel artikel, BindingResult result, Model model)
     {
         if (result.hasErrors())
         {
@@ -43,6 +44,8 @@ public class ArtikelController
     public String loeschen(@PathVariable("id") long id, Model model) {
         Artikel artikel = artikelService.findById(id);
         artikelService.loescheArtikel(artikel);
+        model.addAttribute("artikel",new Artikel());
+        model.addAttribute("artikelEntities",new ArrayList<>());
         return "artikelmenue";
     }
 }

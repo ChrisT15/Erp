@@ -28,7 +28,7 @@ public class ArtikelRepositoryImpl implements ArtikelRepositoryCustom {
         {
             eigenschaften.put("nummer",artikel.getNummer());
         }
-        if(null != artikel.getBezeichnung())
+        if(null != artikel.getBezeichnung() && !artikel.getBezeichnung().isEmpty())
         {
             eigenschaften.put("bezeichnung",String.format("'%s'",artikel.getBezeichnung()));
         }

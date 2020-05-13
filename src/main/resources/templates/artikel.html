@@ -17,7 +17,7 @@
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form action="#" th:action="@{/artikel/speichern}" th:object="${artikel}" method="post">
+                <form action="#" th:action="@{/artikel/speichern/{id}(id=${artikel.id})}" th:object="${artikel}" method="post">
                     <div class="row">
                         <div class="form-group col-md-8">
                             <label for="nummer" class="col-form-label">Nummer</label> <input type="text" th:field="*{nummer}" class="form-control" id="nummer" placeholder="Nummer"> <span th:if="${#fields.hasErrors('nummer')}" th:errors="*{nummer}" class="text-danger"></span>
