@@ -18,9 +18,9 @@ public class ArtikelMenueController
     @Autowired
     ArtikelService artikelService;
 
-    List<Artikel> artikelEntities = new ArrayList<>();
+    private List<Artikel> artikelEntities = new ArrayList<>();
 
-    Artikel artikel = new Artikel();
+    private Artikel artikel = new Artikel();
 
     @RequestMapping("/artikel")
     public String oeffneArtikelFenster(@ModelAttribute Artikel artikel)
