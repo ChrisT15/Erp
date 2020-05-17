@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ArtikelController
 {
     @Autowired
-    ArtikelService artikelService;
+    private ArtikelService artikelService;
 
     @PostMapping("/speichern/{id}")
     public String speichern(@PathVariable("id") long id, @Valid Artikel artikel, BindingResult result, Model model)

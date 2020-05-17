@@ -16,7 +16,7 @@ import java.util.List;
 public class ArtikelMenueController
 {
     @Autowired
-    ArtikelService artikelService;
+    private ArtikelService artikelService;
 
     private List<Artikel> artikelEntities = new ArrayList<>();
 

@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 class IndexControllerTest
 {
     @Autowired
-    MockMvc artikelMenueControllerMock;
+    private MockMvc mockMvc;
 
     /** Test, ob das Artikelmenü aufgerufen wird.
      * @throws Exception
@@ -20,7 +20,7 @@ class IndexControllerTest
     @Test
     void oeffneArtikelMenue() throws Exception
     {
-        artikelMenueControllerMock
+        mockMvc
                 .perform(MockMvcRequestBuilders.get("/artikelmenue")
                 .accept(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.status().isOk())

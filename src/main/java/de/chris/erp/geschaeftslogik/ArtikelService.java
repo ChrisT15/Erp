@@ -11,7 +11,7 @@ import java.util.List;
 public class ArtikelService
 {
     @Autowired
-    ArtikelRepository<Artikel,Long> artikelRepository;
+    private ArtikelRepository<Artikel,Long> artikelRepository;
 
     public Artikel speicherArtikel(Artikel artikel)
     {
