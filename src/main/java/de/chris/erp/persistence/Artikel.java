@@ -3,6 +3,9 @@ package de.chris.erp.persistence;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Repräsentiert einen Artikel.
+ */
 @Entity
 public class Artikel
 {

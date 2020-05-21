@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Enthält Implementierung von selbst erstellten Methode mit Persistenzlogik für {@link Artikel}
+ */
 @Repository
 public class ArtikelRepositoryImpl implements ArtikelRepositoryCustom {
 
