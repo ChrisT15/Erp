@@ -27,16 +27,13 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="col-md-8">
-                            <form action="#" th:action="@{/artikelmenue/suchen}" th:object="${artikel}" method="post">
+                            <form action="#" th:action="@{/artikelmenue/suchen}" th:object="${artikelSuchFormular}" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="nummer" class="col-form-label">Nummer</label> <input type="text" th:field="*{nummer}" class="form-control" id="nummer" placeholder="Nummer"> <span th:if="${#fields.hasErrors('nummer')}" th:errors="*{nummer}" class="text-danger"></span>
                                     </div>
                                     <div class="form-group col-md-8">
                                         <label for="bezeichnung" class="col-form-label">Bezeichnung</label> <input type="text" th:field="*{bezeichnung}" class="form-control" id="bezeichnung" placeholder="Bezeichnung"> <span th:if="${#fields.hasErrors('bezeichnung')}" th:errors="*{bezeichnung}" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group col-md-8">
-                                        <label for="verkaufsPreis" class="col-form-label">Verkaufspreis</label> <input type="text" th:field="*{verkaufsPreis}" class="form-control" id="verkaufsPreis" placeholder="verkaufsPreis"> <span th:if="${#fields.hasErrors('verkaufsPreis')}" th:errors="verkaufsPreis" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-group col-md-8">

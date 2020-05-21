@@ -37,10 +37,10 @@ class ArtikelRepositoryTest
         artikelRepository.save(artikel1);
         artikelRepository.save(artikel2);
 
-        Artikel artikel = new Artikel();
-        artikel.setBezeichnung("Artikel1");
+        ArtikelSuchFormular artikelSuchFormularkel = new ArtikelSuchFormular();
+        artikelSuchFormularkel.setBezeichnung("Artikel1");
 
-        List<Artikel> artikelList = artikelRepository.sucheArtikelNachEigenschaften(artikel);
+        List<Artikel> artikelList = artikelRepository.sucheArtikelNachEigenschaften(artikelSuchFormularkel);
         assertEquals(1,artikelList.size());
         assertEquals("Artikel1",artikelList.get(0).getBezeichnung());
 

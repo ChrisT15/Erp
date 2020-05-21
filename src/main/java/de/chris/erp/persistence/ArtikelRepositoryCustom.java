@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ArtikelRepositoryCustom
 {
-    public List<Artikel> sucheArtikelNachEigenschaften(Artikel artikel);
+    public List<Artikel> sucheArtikelNachEigenschaften(ArtikelSuchFormular artikelSuchFormular);
 
 }

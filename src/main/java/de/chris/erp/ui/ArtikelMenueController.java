@@ -2,6 +2,7 @@ package de.chris.erp.ui;
 
 import de.chris.erp.geschaeftslogik.ArtikelService;
 import de.chris.erp.persistence.Artikel;
+import de.chris.erp.persistence.ArtikelSuchFormular;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ArtikelMenueController
 
     private List<Artikel> artikelEntities = new ArrayList<>();
 
-    private Artikel artikel = new Artikel();
+    private ArtikelSuchFormular artikelSuchFormular = new ArtikelSuchFormular();
 
     @RequestMapping("/artikel")
     public String oeffneArtikelFenster(@ModelAttribute Artikel artikel)
@@ -29,12 +30,12 @@ public class ArtikelMenueController
     }
 
     @PostMapping("/suchen")
-    public String sucheArtikel(Artikel artikel, BindingResult bindingResult, Model model)
+    public String sucheArtikel(ArtikelSuchFormular artikelSuchFormular, BindingResult bindingResult, Model model)
     {
-        this.artikel = artikel;
-        artikelEntities = artikelService.sucheArtikelNachEigenschaften(artikel);
+        this.artikelSuchFormular = artikelSuchFormular;
+        artikelEntities = artikelService.sucheArtikelNachEigenschaften(artikelSuchFormular);
         model.addAttribute("artikelEntities", artikelEntities);
-        model.addAttribute("artikel",artikel);
+        model.addAttribute("artikelSuchFormular",artikelSuchFormular);
         return "artikelmenue";
     }
 
@@ -42,16 +43,24 @@ public class ArtikelMenueController
     public String zeigeLeereFelder(Model model)
     {
         model.addAttribute("artikelEntities",new ArrayList<>());
-        model.addAttribute("artikel",new Artikel());
+        model.addAttribute("artikelSuchFormular",new ArtikelSuchFormular());
         return "artikelmenue";
     }
 
     @GetMapping("/ohneGeloeschtenArtikel/{id}")
     public String zeigeArtikelTabelleOhneGeloeschtenArtikel(Model model,@PathVariable("id") Long id)
     {
-        model.addAttribute("artikel",new Artikel());
+        model.addAttribute("artikelSuchFormular",new ArtikelSuchFormular());
         artikelEntities.removeIf(artikel -> artikel.getId() == id);
         model.addAttribute("artikelEntities",artikelEntities);
         return "artikelmenue";
     }
+
+    @GetMapping("/oeffnen")
+    public String oeffneArtikelMenue(Model model)
+    {
+        model.addAttribute("artikelSuchFormular",artikelSuchFormular);
+        return "artikelmenue";
+    }
+
 }

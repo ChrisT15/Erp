@@ -6,7 +6,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = IndexController.class)
 class IndexControllerTest
@@ -23,7 +25,7 @@ class IndexControllerTest
         mockMvc
                 .perform(MockMvcRequestBuilders.get("/artikelmenue")
                 .accept(MediaType.TEXT_HTML))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("artikelmenue"));
+                .andExpect(redirectedUrl("/artikelmenue/oeffnen"))
+                .andExpect(status().isFound());
     }
 }

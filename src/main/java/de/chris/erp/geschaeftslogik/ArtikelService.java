@@ -2,6 +2,7 @@ package de.chris.erp.geschaeftslogik;
 
 import de.chris.erp.persistence.Artikel;
 import de.chris.erp.persistence.ArtikelRepository;
+import de.chris.erp.persistence.ArtikelSuchFormular;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,8 @@ public class ArtikelService
                 .orElseThrow(()-> new IllegalStateException("Keine gültige Artikel-Id: " + artikelId));
     }
 
-    public List<Artikel> sucheArtikelNachEigenschaften(Artikel artikel)
+    public List<Artikel> sucheArtikelNachEigenschaften(ArtikelSuchFormular artikelSuchFormular)
     {
-        return artikelRepository.sucheArtikelNachEigenschaften(artikel);
+        return artikelRepository.sucheArtikelNachEigenschaften(artikelSuchFormular);
     }
 }

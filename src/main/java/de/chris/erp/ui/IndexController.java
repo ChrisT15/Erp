@@ -1,8 +1,6 @@
 package de.chris.erp.ui;
 
-import de.chris.erp.persistence.Artikel;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -10,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexController
 {
     @RequestMapping("/artikelmenue")
-    public String oeffneArtikelMenue(Model model)
+    public String oeffneArtikelMenue()
     {
-        model.addAttribute("artikel",new Artikel());
-        return "artikelmenue";
+        return "redirect:/artikelmenue/oeffnen";
     }
 }

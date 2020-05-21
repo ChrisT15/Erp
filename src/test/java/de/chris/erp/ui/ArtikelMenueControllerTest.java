@@ -2,6 +2,7 @@ package de.chris.erp.ui;
 
 import de.chris.erp.geschaeftslogik.ArtikelService;
 import de.chris.erp.persistence.Artikel;
+import de.chris.erp.persistence.ArtikelSuchFormular;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,15 +55,15 @@ class ArtikelMenueControllerTest
 
 
         List<Artikel> artikelList = Arrays.asList(artikel1,artikel2);
-        when(artikelService.sucheArtikelNachEigenschaften(ArgumentMatchers.any(Artikel.class)))
+        when(artikelService.sucheArtikelNachEigenschaften(ArgumentMatchers.any(ArtikelSuchFormular.class)))
                 .thenReturn(artikelList);
 
         mockMvc.perform(post("/artikelmenue/suchen")
                 .accept(MediaType.TEXT_HTML))
                 .andExpect(MockMvcResultMatchers.view().name("artikelmenue"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("artikel",allOf(
-                        hasProperty("id",is((0L)))
+                .andExpect(model().attribute("artikelSuchFormular",allOf(
+                        hasProperty("nummer",is((0L)))
                 )))
                 .andExpect(model().attribute("artikelEntities",
                         hasItem(

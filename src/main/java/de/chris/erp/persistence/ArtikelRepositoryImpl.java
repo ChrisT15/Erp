@@ -1,12 +1,10 @@
 package de.chris.erp.persistence;
 
+import de.chris.erp.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,18 +17,18 @@ public class ArtikelRepositoryImpl implements ArtikelRepositoryCustom {
     EntityManager entityManager;
 
     @Override
-    public List<Artikel> sucheArtikelNachEigenschaften(Artikel artikel)
+    public List<Artikel> sucheArtikelNachEigenschaften(ArtikelSuchFormular artikelSuchFormular)
     {
         String abfrage = "from Artikel a ";
         Map<String,Object> eigenschaften = new HashMap<>();
 
-        if(null != artikel.getNummer())
+        if(!StringUtil.isEmptyOrNull(artikelSuchFormular.getNummer()))
         {
-            eigenschaften.put("nummer",artikel.getNummer());
+            eigenschaften.put("nummer",artikelSuchFormular.getNummer());
         }
-        if(null != artikel.getBezeichnung() && !artikel.getBezeichnung().isEmpty())
+        if(null != artikelSuchFormular.getBezeichnung() && !artikelSuchFormular.getBezeichnung().isEmpty())
         {
-            eigenschaften.put("bezeichnung",String.format("'%s'",artikel.getBezeichnung()));
+            eigenschaften.put("bezeichnung",String.format("'%s'",artikelSuchFormular.getBezeichnung()));
         }
 
         if(!eigenschaften.isEmpty())
