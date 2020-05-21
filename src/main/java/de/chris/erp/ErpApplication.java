@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ErpApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ErpApplication.class, args);
+		SpringApplication springApplication = new SpringApplication(ErpApplication.class);
+		springApplication.setAdditionalProfiles("dev");
+		springApplication.run(args);
 	}
 
 }

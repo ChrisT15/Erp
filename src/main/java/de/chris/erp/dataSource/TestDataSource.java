@@ -8,20 +8,21 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Datenbank-Konfiguration für die Entwicklungsdatenbank
+ * Konfiguration für die Test-Datenbank
  */
 @Configuration
 @Component
-@Profile("dev")
-public class DevDataSource implements DataSource
+@Profile("testdb")
+public class TestDataSource implements DataSource
 {
     @ConfigurationProperties(prefix = "spring.datasource")
     @Bean
+    @Profile("testdb")
     @Override
     public javax.sql.DataSource getDataSource()
     {
         return DataSourceBuilder.create()
-                .url("jdbc:mysql://localhost:3306/erp")
+                .url("jdbc:mysql://localhost:3306/erptest")
                 .username("user")
                 .password("password")
                 .build();
